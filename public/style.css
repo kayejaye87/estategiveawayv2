@@ -1,0 +1,32 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #items-list {
+    margin-top: 20px;
+  }
+  
+  .list-group-item {
+    background: #ffffff;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .invalid-feedback {
+    display: none;
+  }
+  
+  .was-validated .form-control:invalid ~ .invalid-feedback {
+    display: block;
+  }
+  
