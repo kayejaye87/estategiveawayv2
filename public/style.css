@@ -1,25 +1,51 @@
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  h1 {
+    margin-block-start: 8px;
+    font-size: 2.5rem;
   }
   
-  .container {
-    margin-top: 50px;
+  h2 {
+    font-size: 1.5rem; 
   }
   
-  .card {
-    background: #ffffff;
+  h3 {
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.8rem; font-style: italic;
+  }
+
+  h5 {
+    font-size: 0.8rem; font-style: italic;
+  }
+
+  .header {
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .threecard {
+    background: rgb(133, 148, 209);
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 10 10 10px rgba(0, 0, 0, 0.1;
   }
   
+  .card-body {
+    background: rgb(133, 148, 209);
+    padding: 20px;
+  }
+
   #items-list {
     margin-top: 20px;
-  }
-  
-  .list-group-item {
-    background: #ffffff;
-    margin-bottom: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
   
   .invalid-feedback {
