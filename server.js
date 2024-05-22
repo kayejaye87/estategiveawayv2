@@ -1,10 +1,6 @@
 // Needed for dotenv
 require("dotenv").config();
 
-// Needed for Express
-var express = require('express')
-var app = express()
-
 // Needed for EJS
 app.set('view engine', 'ejs');
 
