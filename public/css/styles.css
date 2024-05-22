@@ -139,6 +139,10 @@ h2, .h2 {
 }
 
 h3, .h3 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   font-size: calc(1.3rem + 0.6vw);
 }
 @media (min-width: 1200px) {
@@ -10979,7 +10983,7 @@ html {
   font-size: 1.25rem;
 }
 .masthead .masthead-avatar {
-  width: 25rem;
+  width: 22rem;
 }
 
 @media (min-width: 992px) {
@@ -10995,22 +10999,7 @@ html {
     font-size: 2rem;
   }
 }
-.portfolio .portfolio-item {
-  cursor: pointer;
-  position: relative;
-  display: block;
-  max-width: 25rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-.portfolio .portfolio-item .portfolio-item-caption {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.2s ease-in-out;
-  opacity: 0;
-  background-color: rgba(26, 188, 156, 0.9);
-}
+
 .portfolio .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
 }
