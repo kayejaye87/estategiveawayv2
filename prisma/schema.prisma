@@ -13,9 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Post model represents individual blog posts
-model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  content   String
+// Listing model represents individual listings
+model Listing {
+  id            Int      @id @default(autoincrement())
+  ItemTitle       String
+  ItemCondition   String
+  ItemDescription String
+  Photo           String
+  MobileNumber    String
+  createdAt       DateTime @default(now())
 }

@@ -39,34 +39,39 @@ const HAS_ATTACHMENTS = true
 
 app.post(
   '/submissions',
-  // Endpoint authentication by verifying signatures
-  function (req, res, next) {
+  async (req, res, next) => {
     try {
-      formsg.webhooks.authenticate(req.get('X-FormSG-Signature'), POST_URI)
-      // Continue processing the POST body
-      return next()
+      formsg.webhooks.authenticate(req.get('X-FormSG-Signature'), POST_URI);
+      next();
     } catch (e) {
-      return res.status(401).send({ message: 'Unauthorized' })
+      res.status(401).send({ message: 'Unauthorized' });
     }
   },
-  // Parse JSON from raw request body
-  express.json(),
-  // Decrypt the submission
-  async function (req, res, next) {
-    // If `verifiedContent` is provided in `req.body.data`, the return object
-    // will include a verified key.
-    const submission = HAS_ATTACHMENTS
-      ? await formsg.crypto.decryptWithAttachments(formSecretKey, req.body.data)
-      : formsg.crypto.decrypt(formSecretKey, req.body.data)
+  async (req, res) => {
+    try {
+      const submission = HAS_ATTACHMENTS
+        ? await formsg.crypto.decryptWithAttachments(formSecretKey, req.body.data)
+        : formsg.crypto.decrypt(formSecretKey, req.body.data);
 
-    // If the decryption failed, submission will be `null`.
-    if (submission) {
-      // Continue processing the submission
-    } else {
-      // Could not decrypt the submission
+      if (submission) {
+        // Save to database
+        const savedSubmission = await prisma.submission.create({
+          data: {
+            formId: req.body.formId,
+            data: submission,
+          },
+        });
+        res.status(200).send(savedSubmission);
+      } else {
+        res.status(400).send({ message: 'Invalid submission data' });
+      }
+    } catch (error) {
+      console.error('Error processing submission:', error);
+      res.status(500).send({ message: 'Internal Server Error' });
     }
   }
-)
+);
+
 
 app.listen(8080, () => console.log('Running on port 8080'))
 
