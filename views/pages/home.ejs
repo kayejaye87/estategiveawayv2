@@ -109,10 +109,10 @@
                         <% if (listings && listings.length) { %>
                             <% listings.forEach(listing => { %>
                               <div class="listing">
-                                <h4><%= listing.ListingTitle %></h4>
-                                <h4><%= listing.Condition %></h4>
-                                <p><%= listing.Description %></p>
-                                <p>Contact at <%= listing.MobileNumber %></p>
+                                <h4>Item Looking for a Second Home: <%= listing.ListingTitle %></h4>
+                                <p>Condition: <%= listing.Condition %></p>
+                                <p>Description: <%= listing.Description %></p>
+                                <p>Contact the giver at <%= listing.MobileNumber %></p>
                               </div>
                             <% }) %>
                           <% } else { %>
