@@ -102,49 +102,22 @@
             </div>
             <!-- Listings Grid Items-->
             <div class="row justify-content-center">
-                <!-- Listings Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
+                <div class="col-md-12 col-lg-12 mb-12">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         </div>
-                        <img class="img-fluid" src="images/dummy.jpeg" alt="..." />
                         <% if (listings && listings.length) { %>
                             <% listings.forEach(listing => { %>
                               <div class="listing">
-                                <h3><%= listing.ListingTitle %></h3>
+                                <h4><%= listing.ListingTitle %></h4>
                                 <h4><%= listing.Condition %></h4>
                                 <p><%= listing.Description %></p>
+                                <p>Contact at <%= listing.MobileNumber %></p>
                               </div>
                             <% }) %>
                           <% } else { %>
                             <p>No listings available.</p>
                           <% } %>
-                    </div>
-                </div>
-                <!-- Listings Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        </div>
-                        <img class="img-fluid" src="images/dummy.jpeg" alt="..." />
-                        <h3>Item 2 Listing Title</h3>
-                        <h4>Item 2 Condition</h4>
-                        <h4>Item 2 Description</h4>
-                        <h5>Item 2 Time Listed</h5>
-                        <h5>Item 2 Mobile Number</h5>
-                    </div>
-                </div>
-                <!-- Listings Item 3-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        </div>
-                        <img class="img-fluid" src="images/dummy.jpeg" alt="..." />
-                        <h3>Item 3 Listing Title</h3>
-                        <h4>Item 3 Condition</h4>
-                        <h4>Item 3 Description</h4>
-                        <h5>Item 3 Time Listed</h5>
-                        <h5>Item 3 Mobile Number</h5>
                     </div>
                 </div>
               </section>
@@ -163,35 +136,42 @@
         <!-- Form to submit a new post -->
         <div class="create-post-container">
             <form method="post">
-                <fieldset>
-                  <label>
-                    Item Title
-                    <input name="ListingTitle" placeholder="What are you giving away?"/>
-                  </label>
+                <fieldset class="mb-6">
+                    <label class="form-label">
+                        Item Title
+                        <textarea name="ListingTitle" placeholder="What are you giving away?" class="form-control" /></textarea>
+                    </label>
                 </fieldset>
-
-                <label>
-                Condition
-                <textarea name="Condition" placeholder="Brand New, Lightly Used, Heavily Used..." ></textarea>
-                </label>
-
-                <label>
-                    Description
-                    <textarea name="Description" placeholder="Give more details about your item!" ></textarea>
+        
+                <fieldset class="mb-6">
+                    <label class="form-label">
+                        Condition
+                        <textarea name="Condition" placeholder="Brand New, Lightly Used, Heavily Used..." class="form-control"></textarea>
                     </label>
-
-                <label>
-                    Mobile Number
-                    <textarea name="MobileNumber" placeholder="Put in your mobile number so your neighbours can connect!" ></textarea>
+                </fieldset>
+        
+                <fieldset class="mb-6">
+                    <label class="form-label">
+                        Description
+                        <textarea name="Description" placeholder="Give more details about your item!" class="form-control"></textarea>
                     </label>
-              <br>
+                </fieldset>
+        
+                <fieldset class="mb-6">
+                    <label class="form-label">
+                        Mobile Number
+                        <textarea name="MobileNumber" placeholder="Put in your mobile number so your neighbours can connect!" class="form-control"></textarea>
+                    </label>
+                </fieldset>
+        
                 <input
                   type="submit"
                   value="List Your Item!"
+                  class="btn btn-primary btn-lg btn-block mt-3"
                 />
-              </form>
+            </form>
         </div>
-    </div>
+        </div>
           </section>
 
               <!-- About Section-->

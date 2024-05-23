@@ -15,7 +15,9 @@ datasource db {
 
 // Post model represents individual listings
 model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  content   String
+  id                Int       @id @default(autoincrement())
+  ListingTitle     String
+  Condition         String
+  Description       String
+  MobileNumber      String
 }

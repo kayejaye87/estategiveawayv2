@@ -12,60 +12,63 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 // Needed for parsing form data
-app.use(express.json());       
-app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Needed for Prisma to connect to database
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 // Main landing page
-app.get('/', async function(req, res) {
+app.get('/', async function (req, res) {
 
-    // Try-Catch for any errors
-    try {
-        // Get all listings
-        const listings = await prisma.post.findMany({
-                orderBy: [
-                  {
-                    id: 'desc'
-                  }
-                ]
-        });
+  // Try-Catch for any errors
+  try {
+    // Get all listings
+    const listings = await prisma.post.findMany({
+      orderBy: [
+        {
+          id: 'desc'
+        }
+      ]
+    });
 
-        // Render the homepage with all the listings
-        await res.render('pages/home', { listings: listings });
-      } catch (error) {
-        res.render('pages/home');
-        console.log(error);
-      } 
+    // Render the homepage with all the listings
+    console.log("listings", listings)
+    await res.render('pages/home', {
+      listings: listings
+    });
+  } catch (error) {
+    res.render('pages/home');
+    console.log(error);
+  }
 });
 
 // Create a new post
-app.post('/', async function(req, res) {
-    
-    // Try-Catch for any errors
-    try {
-        // Get the listing info from submitted form
-        const { ListingTitle, Condition, Description, MobileNumber } = req.body;
+app.post('/', async function (req, res) {
 
-        // Reload page if empty title or content
-        if (!ListingTitle || !Condition || !Description || !MobileNumber) {
-            console.log("Unable to create new post, no title or content");
-            res.render('pages/home');
-        } else {
-            // Create post and store in database
-            const listings = await prisma.post.create({
-                data: { ListingTitle, Condition, Description, MobileNumber },
-            });
+  // Try-Catch for any errors
+  try {
+    // Get the listing info from submitted form
+    const { ListingTitle, Condition, Description, MobileNumber } = req.body;
 
-            // Redirect back to the homepage
-            res.redirect('/');
-        }
-      } catch (error) {
-        console.log(error);
-        res.render('pages/home');
-      }
+    // Reload page if empty title or content
+    if (!ListingTitle || !Condition || !Description || !MobileNumber) {
+      console.log("Unable to create new post, no title or content");
+      res.render('pages/home');
+    } else {
+      // Create post and store in database
+      const listings = await prisma.post.create({
+        data: { ListingTitle, Condition, Description, MobileNumber },
+      });
+
+      // Redirect back to the homepage
+      res.redirect('/');
+    }
+  } catch (error) {
+    console.log(error);
+    res.render('pages/home');
+  }
 
 });
 
